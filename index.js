@@ -4,7 +4,8 @@ import mongoose from "mongoose";
 import morgan from "morgan";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js"
-import eventhRoutes from "./routes/eventRoutes.js"
+import eventRoutes from "./routes/eventRoutes.js"
+import albumRoutes from "./routes/albumRoutes.js"
 
 dotenv.config();
 
@@ -23,7 +24,8 @@ app.use(express.json());
 
 // router middelware //
 app.use(authRoutes);
-app.use(eventhRoutes);
+app.use(eventRoutes);
+app.use(albumRoutes);
 
 // Port Information //
 const port = process.env.PORT || 3001;
