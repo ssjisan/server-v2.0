@@ -60,38 +60,3 @@ export const createAlbum = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-
-export const listAlbums = async (req, res) => {
-  try {
-    const albums = await Album.find();
-    res.json(albums);
-  } catch (error) {
-    console.error("Error fetching albums:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-};
-
-export const readAlbum = async (req, res) => {
-  try {
-    const { slug } = req.params;
-    const album = await Album.findOne({ slug });
-
-    if (!album) {
-      return res.status(404).json({ error: "Album not found" });
-    }
-
-    res.json(album);
-  } catch (error) {
-    console.error("Error fetching album:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-};
-
-export const removeAlbum = async (req, res) => {
-  try {
-    const album = await Album.findByIdAndDelete(req.params.albumId);
-    res.json(album);
-  } catch (err) {
-    console.log(err.message);
-  }
-};

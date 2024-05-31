@@ -5,9 +5,6 @@ const router = express.Router();
 // import controller
 import {
   createAlbum,
-  readAlbum,
-  listAlbums,
-  removeAlbum,
 } from "../controller/albumController.js";
 
 // import middleware
@@ -22,9 +19,9 @@ router.post(
   upload.array("images", 30),
   createAlbum
 );
-router.get("/album/:slug", readAlbum);
-router.get("/albums", listAlbums);
-router.delete("/album/:albumId", requiredSignIn, isAdmin, removeAlbum);
+// router.get("/album/:slug", readAlbum);
+// router.get("/albums", listAlbums);
+// router.delete("/album/:albumId", requiredSignIn, isAdmin, removeAlbum);
 
 
 export default router;
