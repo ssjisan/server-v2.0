@@ -1,5 +1,4 @@
 import express from "express";
-import multer from "multer";
 
 const router = express.Router();
 // import controller
@@ -10,13 +9,11 @@ import {
 // import middleware
 import { requiredSignIn, isAdmin } from "../middlewares/authMiddleware.js";
 
-const upload = multer({ dest: "uploads/" });
 
 router.post(
   "/album",
   requiredSignIn,
   isAdmin,
-  upload.array("images", 30),
   createAlbum
 );
 // router.get("/album/:slug", readAlbum);
