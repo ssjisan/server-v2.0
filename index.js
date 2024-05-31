@@ -22,11 +22,12 @@ app.use(express.json());
 // router middelware //
 // app.use(authRouters);
 
+// Port Information //
 const port = process.env.PORT || 3001;
 
-app.get("/",(req,res)=>{
-  res.send("Your are getting data")
-})
+app.get("/", (req, res) => {
+  res.send("Your are getting data");
+});
 
 app.listen(port, () => {
   console.log(`This is running ${port}`);
