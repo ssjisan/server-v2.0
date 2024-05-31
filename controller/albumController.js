@@ -11,7 +11,6 @@ import FormData from "form-data";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const IMGBB_API_KEY = "750f30021cd9d12d41a19a051df5c92a";
 
 export const createAlbum = async (req, res) => {
   try {
@@ -32,7 +31,7 @@ export const createAlbum = async (req, res) => {
       const filePath = path.join(__dirname, "..", file.path);
       const formData = new FormData();
       formData.append("image", fs.createReadStream(filePath));
-      formData.append("key", IMGBB_API_KEY);
+      formData.append("key", process.env.IMGBB_API_KEY);
 
       const response = await fetch("https://api.imgbb.com/1/upload", {
         method: "POST",

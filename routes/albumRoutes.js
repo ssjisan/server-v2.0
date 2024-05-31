@@ -25,12 +25,6 @@ router.post(
 router.get("/album/:slug", readAlbum);
 router.get("/albums", listAlbums);
 router.delete("/album/:albumId", requiredSignIn, isAdmin, removeAlbum);
-// router.put(
-//   "/album/:albumId",
-//   requiredSignIn,
-//   isAdmin,
-//   upload.array("images", 30),
-//   updateAlbum
-// );
+
 
 export default router;
