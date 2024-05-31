@@ -4,7 +4,6 @@ import slugify from "slugify";
 import Album from "../model/albumModel.js";
 import fs from "fs";
 import path from "path";
-import FormData from "form-data";
 import axios from "axios";
 
 
@@ -50,14 +49,13 @@ export const createAlbum = async (req, res) => {
 
     const newAlbum = new Album({
       name: albumName,
-      slug: slugify(albumName, { lower: true, strict: true }),
+      slug: slugify(albumName),
       images: uploadedImages,
     });
 
     await newAlbum.save();
     res.json(newAlbum);
   } catch (error) {
-    console.error("Error creating album:", error);
-    res.status(500).json({ error: "Internal server error" });
+    res.status.json({ error: "Error creating album" });
   }
 };
