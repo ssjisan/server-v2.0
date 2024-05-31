@@ -4,8 +4,8 @@ import slugify from "slugify";
 import Album from "../model/albumModel.js";
 import fs from "fs";
 import path from "path";
-import fetch from "node-fetch";
 import FormData from "form-data";
+import axios from "axios";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -33,9 +33,10 @@ export const createAlbum = async (req, res) => {
       formData.append("image", fs.createReadStream(filePath));
       formData.append("key", process.env.IMGBB_API_KEY);
 
-      const response = await fetch("https://api.imgbb.com/1/upload", {
-        method: "POST",
-        body: formData,
+      const response = await axios.post("https://api.imgbb.com/1/upload", formData, {
+        headers: {
+          ...formData.getHeaders(),
+        },
       });
 
       const data = await response.json();
